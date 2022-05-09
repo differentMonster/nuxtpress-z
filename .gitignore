@@ -4,6 +4,7 @@
 ### Nuxtjs ###
 # Nuxt build
 .nuxt
+node_modules
 /frontend/node_modules
 
 # Nuxt generate

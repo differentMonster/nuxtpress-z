@@ -1,0 +1,26 @@
+{
+    "name": "nuxtpress-z",
+    "version": "1.0.0",
+    "description": "nuxt 3 + wordpress ( faustwp )",
+    "workspaces": {
+        "packages": [
+            "frontend",
+            "backend"
+        ]
+    },
+    "scripts": {
+        "build": "npm run build --workspace=frontend",
+        "dev": "npm run build && npm run dev --workspace=frontend",
+        "clean:examples": "rimraf frontend/**/node_modules",
+        "changeset": "changeset",
+        "version": "changeset version && node scripts/versionPlugin.js",
+        "version:status": "changeset status",
+        "release": "npm run build && changeset publish"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.17.0",
+        "rimraf": "^3.0.2"
+    },
+    "author": "christophercheok",
+    "license": "MIT"
+}
