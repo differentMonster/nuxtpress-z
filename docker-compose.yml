@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+
+  # Database
+  nuxtpress.mysql:
+    container_name: ${NUXTPRESS_MYSQL_CONTAINER:-nuxtpress.mysql}
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 33066:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${NUXTPRESS_MYSQL_ROOT_PASSWORD:-password}
+      MYSQL_DATABASE: ${NUXTPRESS_DB_NAME:-nuxtpressz_database}
+      MYSQL_USER: ${NUXTPRESS_MYSQL_USER:-nuxtpresszadmin}
+      MYSQL_PASSWORD: ${NUXTPRESS_MYSQL_PASSWORD:-zpassword}
+    ## if switch to just using .env file
+    # env_file:
+    #   - ./env/db.env
+    networks:
+      - wpsite
+
+  wordpress:
+    build:
+      context: ./backend/docker
+    restart: always
+    ports:
+      - 3080:80
+    links:
+      - nuxtpress.mysql
+    environment:
+      WORDPRESS_DB_HOST: nuxtpress.mysql
+      WORDPRESS_DB_NAME: nuxtpressz_database
+      WORDPRESS_DB_USER: nuxtpresszadmin
+      WORDPRESS_DB_PASSWORD: zpassword
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - wpsite
+
+networks:
+  wpsite:
+
+volumes:
+  wordpress:
