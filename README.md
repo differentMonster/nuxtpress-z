@@ -16,20 +16,6 @@
   </a>
 </p>
 
-<p align="center">
-  <a aria-label="Faust.js Core Downloads" href="https://www.npmjs.com/package/@faustjs/core">
-    <img alt="" src="https://img.shields.io/npm/dw/@faustjs/core?color=7e5cef&style=for-the-badge&label=@faustjs/core">
-  </a>
-<!--  -->
-  <a aria-label="Faust.js  Downloads" href="https://www.npmjs.com/package/@faustjs/react">
-    <img alt="" src="https://img.shields.io/npm/dw/@faustjs/react?color=7e5cef&style=for-the-badge&label=@faustjs/react">
-  </a>
-
-  <a aria-label="Faust.js  Downloads" href="https://www.npmjs.com/package/@faustjs/next">
-    <img alt="" src="https://img.shields.io/npm/dw/@faustjs/next?color=7e5cef&style=for-the-badge&label=@faustjs/next">
-  </a>
-</p>
-
 ## Introduction
 Nuxt 3 with Headless Wordpress ( faustwp ) bolierplate
 
