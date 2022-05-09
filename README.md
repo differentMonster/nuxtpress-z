@@ -1,3 +1,4 @@
+![1636096416_What's New in Nuxt 3](https://user-images.githubusercontent.com/31682578/167348283-77f13e20-8658-4520-a12b-af2ca29643ed.jpg)
 
 <p align="center">
   <strong>
