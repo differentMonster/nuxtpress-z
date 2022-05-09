@@ -20,19 +20,36 @@ services:
     networks:
       - wpsite
 
-  wordpress:
+  # phpmyadmin
+  nuxtpress.phpmyadmin:
+    container_name: ${NUXTPRESS_PHPMYADMIN_CONTAINER:-nuxtpress.phpmyadmin}
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    depends_on:
+      - ${NUXTPRESS_MYSQL_CONTAINER:-nuxtpress.mysql}
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: ${NUXTPRESS_MYSQL_CONTAINER:-nuxtpress.mysql}
+      MYSQL_ROOT_PASSWORD: ${NUXTPRESS_MYSQL_ROOT_PASSWORD:-password}
+    networks:
+      - wpsite
+
+  nuxtpress.fwp:
+    container_name: ${NUXTPRESS_WP_CONTAINER:-nuxtpress.fwp}
     build:
       context: ./backend/docker
     restart: always
+    depends_on:
+      - ${NUXTPRESS_MYSQL_CONTAINER:-nuxtpress.mysql}
     ports:
-      - 3080:80
-    links:
-      - nuxtpress.mysql
+      - '${NUXTPRESS_WP_PORT:-3080}:80'
     environment:
-      WORDPRESS_DB_HOST: nuxtpress.mysql
-      WORDPRESS_DB_NAME: nuxtpressz_database
-      WORDPRESS_DB_USER: nuxtpresszadmin
-      WORDPRESS_DB_PASSWORD: zpassword
+      NUXTPRESS_WP_PORT: ${NUXTPRESS_WP_PORT:-3080}
+      WORDPRESS_DB_HOST: ${NUXTPRESS_DB_HOST:-nuxtpress.mysql:3306}
+      WORDPRESS_DB_USER: ${NUXTPRESS_DB_USER:-nuxtpresszadmin}
+      WORDPRESS_DB_PASSWORD: ${NUXTPRESS_DB_PASSWORD:-zpassword}
+      WORDPRESS_DB_NAME: ${NUXTPRESS_DB_NAME:-nuxtpressz_database}
     volumes:
       - wordpress:/var/www/html
     networks:
