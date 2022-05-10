@@ -1,13 +1,15 @@
 <template>
-    <div>
-        <h1>Cart Test</h1>
-    </div>
+    <button @click="showAlert">Hello world</button>
 </template>
 
 <script>
-    export default {}
+    export default {
+        methods: {
+            showAlert() {
+                // console.log(this.$swal)
+                // this.$swal('Hello Vue world!!!');
+                this.$cartalert.addProductSuccess()
+            },
+        },
+    };
 </script>
-
-<style>
-
-</style>
